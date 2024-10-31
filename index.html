@@ -3,56 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Diwali Wishes</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Happy Diwali</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="diwali-text">
-        🎆 Happy Diwali 🎆<br>
-        May this festival of lights<br> bring joy and prosperity to you!
+    <div class="container">
+        <h1>🎆 Happy Diwali 🎆</h1>
+        <p>Wishing you and your family a sparkling, joyful, and prosperous Diwali! May the festival of lights brighten your life with love, joy, and success.</p>
+        <div id="fireworks-container"></div>
     </div>
-
-    <!-- Fireworks Container -->
-    <div class="firework-container" id="firework-container"></div>
-
-    <script>
-        function getRandomColor() {
-            const colors = ['#ff6666', '#ffcc66', '#66ff66', '#66ccff', '#cc66ff', '#ff66b3'];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-
-        function createExplosion(x, y) {
-            const fireworkContainer = document.getElementById('firework-container');
-            for (let i = 0; i < 20; i++) {
-                const spark = document.createElement('div');
-                spark.classList.add('firework');
-                spark.style.left = `${x}px`;
-                spark.style.top = `${y}px`;
-                spark.style.backgroundColor = getRandomColor();
-                spark.style.setProperty('--x', Math.random() * 200 - 100);
-                spark.style.setProperty('--y', Math.random() * 200 - 100);
-                fireworkContainer.appendChild(spark);
-                setTimeout(() => spark.remove(), 1500);
-            }
-        }
-
-        function launchRocket() {
-            const fireworkContainer = document.getElementById('firework-container');
-            const rocket = document.createElement('div');
-            rocket.classList.add('rocket');
-            rocket.style.left = `${Math.random() * window.innerWidth}px`;
-            fireworkContainer.appendChild(rocket);
-
-            // Trigger explosion when rocket reaches top
-            setTimeout(() => {
-                const rect = rocket.getBoundingClientRect();
-                createExplosion(rect.left, rect.top);
-                rocket.remove();
-            }, 1000);
-        }
-
-        // Trigger rockets at intervals
-        setInterval(launchRocket, 700);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
