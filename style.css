@@ -23,18 +23,36 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #ffcc00;
-    animation: firework 1s ease-in-out infinite;
+    animation: explode 1.5s ease-out forwards;
 }
 
-@keyframes firework {
+@keyframes explode {
     0% {
         transform: translate(0, 0) scale(1);
         opacity: 1;
     }
     100% {
-        transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(0);
+        transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(0.5);
         opacity: 0;
+    }
+}
+
+/* Rocket Animation */
+.rocket {
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    height: 20px;
+    background-color: #ffcc00;
+    animation: launch 1s ease-in forwards;
+}
+
+@keyframes launch {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100vh);
     }
 }
 
