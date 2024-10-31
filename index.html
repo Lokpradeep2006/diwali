@@ -12,24 +12,35 @@
         May this festival of lights<br> bring joy and prosperity to you!
     </div>
 
-    <!-- Fireworks -->
+    <!-- Fireworks Container -->
     <div class="firework-container" id="firework-container"></div>
 
     <script>
-        // Generate Fireworks
+        // Create Fireworks across the page
         function createFirework() {
             const fireworkContainer = document.getElementById('firework-container');
-            for (let i = 0; i < 20; i++) {
-                const firework = document.createElement('div');
-                firework.classList.add('firework');
-                firework.style.setProperty('--x', Math.random() * 200 - 100);
-                firework.style.setProperty('--y', Math.random() * 200 - 100);
-                fireworkContainer.appendChild(firework);
-                setTimeout(() => firework.remove(), 1000);
+            const positions = 10;  // Number of firework bursts
+            for (let i = 0; i < positions; i++) {
+                const xPosition = Math.random() * window.innerWidth;
+                const yPosition = Math.random() * window.innerHeight;
+                
+                // Generate particles for each firework burst
+                for (let j = 0; j < 20; j++) {
+                    const firework = document.createElement('div');
+                    firework.classList.add('firework');
+                    firework.style.setProperty('--x', Math.random() * 200 - 100);
+                    firework.style.setProperty('--y', Math.random() * 200 - 100);
+                    firework.style.left = `${xPosition}px`;
+                    firework.style.top = `${yPosition}px`;
+                    fireworkContainer.appendChild(firework);
+                    
+                    setTimeout(() => firework.remove(), 1000);
+                }
             }
         }
-        
-        setInterval(createFirework, 500); // Trigger every 0.5s
+
+        // Trigger fireworks every 0.5 seconds
+        setInterval(createFirework, 500);
     </script>
 </body>
 </html>
