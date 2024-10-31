@@ -16,31 +16,43 @@
     <div class="firework-container" id="firework-container"></div>
 
     <script>
-        // Create Fireworks across the page
-        function createFirework() {
+        function getRandomColor() {
+            const colors = ['#ff6666', '#ffcc66', '#66ff66', '#66ccff', '#cc66ff', '#ff66b3'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function createExplosion(x, y) {
             const fireworkContainer = document.getElementById('firework-container');
-            const positions = 10;  // Number of firework bursts
-            for (let i = 0; i < positions; i++) {
-                const xPosition = Math.random() * window.innerWidth;
-                const yPosition = Math.random() * window.innerHeight;
-                
-                // Generate particles for each firework burst
-                for (let j = 0; j < 20; j++) {
-                    const firework = document.createElement('div');
-                    firework.classList.add('firework');
-                    firework.style.setProperty('--x', Math.random() * 200 - 100);
-                    firework.style.setProperty('--y', Math.random() * 200 - 100);
-                    firework.style.left = `${xPosition}px`;
-                    firework.style.top = `${yPosition}px`;
-                    fireworkContainer.appendChild(firework);
-                    
-                    setTimeout(() => firework.remove(), 1000);
-                }
+            for (let i = 0; i < 20; i++) {
+                const spark = document.createElement('div');
+                spark.classList.add('firework');
+                spark.style.left = `${x}px`;
+                spark.style.top = `${y}px`;
+                spark.style.backgroundColor = getRandomColor();
+                spark.style.setProperty('--x', Math.random() * 200 - 100);
+                spark.style.setProperty('--y', Math.random() * 200 - 100);
+                fireworkContainer.appendChild(spark);
+                setTimeout(() => spark.remove(), 1500);
             }
         }
 
-        // Trigger fireworks every 0.5 seconds
-        setInterval(createFirework, 500);
+        function launchRocket() {
+            const fireworkContainer = document.getElementById('firework-container');
+            const rocket = document.createElement('div');
+            rocket.classList.add('rocket');
+            rocket.style.left = `${Math.random() * window.innerWidth}px`;
+            fireworkContainer.appendChild(rocket);
+
+            // Trigger explosion when rocket reaches top
+            setTimeout(() => {
+                const rect = rocket.getBoundingClientRect();
+                createExplosion(rect.left, rect.top);
+                rocket.remove();
+            }, 1000);
+        }
+
+        // Trigger rockets at intervals
+        setInterval(launchRocket, 700);
     </script>
 </body>
 </html>
