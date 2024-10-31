@@ -1,84 +1,51 @@
-/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Background and Centering */
 body {
-    background: #000;
+    font-family: Arial, sans-serif;
+    background-color: #1b1b2f;
+    color: #ffdd57;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
 }
 
-/* Fireworks Animation */
-.firework {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    animation: explode 1.5s ease-out forwards;
-}
-
-@keyframes explode {
-    0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(0.5);
-        opacity: 0;
-    }
-}
-
-/* Rocket Animation */
-.rocket {
-    position: absolute;
-    bottom: 0;
-    width: 6px;
-    height: 20px;
-    background-color: #ffcc00;
-    animation: launch 1s ease-in forwards;
-}
-
-@keyframes launch {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100vh);
-    }
-}
-
-/* Greeting Text */
-.diwali-text {
-    font-size: 3em;
-    font-weight: bold;
+.container {
     text-align: center;
-    color: #ffcc00;
-    text-shadow: 0 0 5px #ff7f50, 0 0 10px #ff7f50, 0 0 15px #ff4500, 0 0 20px #ff4500;
-    animation: glow 2s infinite;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    color: #ffdd57;
+    animation: glow 2s infinite alternate;
+}
+
+p {
+    font-size: 1.2em;
+    margin-top: 15px;
+    color: #f0e130;
+}
+
+#fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
 }
 
 @keyframes glow {
-    0%, 100% {
-        text-shadow: 0 0 5px #ffcc00, 0 0 15px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500;
+    from {
+        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffa500, 0 0 30px #ff4500;
     }
-    50% {
-        text-shadow: 0 0 10px #ff7f50, 0 0 20px #ff4500, 0 0 30px #ff4500, 0 0 40px #ff4500;
+    to {
+        text-shadow: 0 0 20px #ff7f50, 0 0 30px #ff6347, 0 0 40px #ff4500;
     }
-}
-
-/* Firework Container */
-.firework-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
 }
